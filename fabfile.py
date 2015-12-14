@@ -80,9 +80,8 @@ def copy_local_settings():
 
 
 def update_deps():
-    sudo('make wheel-deps')
+    sudo('make deps')
     sudo('make clean_pyc')
-    sudo('make grunt')
 
 
 @task
@@ -137,10 +136,10 @@ def deploy(revision='origin/master', repo='origin', restart_server='true'):
         update_source(revision, repo)
         new_revision = run("git rev-parse HEAD")
         update_deps()
-        copy_local_settings()
+        # copy_local_settings()
 
-        if strtobool(restart_server):
-            execute(restart)
+        # if strtobool(restart_server):
+        #     execute(restart)
     # execute(notify_bearychat, old_revision, new_revision)
 
 
