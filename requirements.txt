@@ -10,7 +10,7 @@ Pillow==2.6.1
 ipdb==0.8
 requests[security]==2.8.1
 # analysis
-# matplotlib==1.4.3
+matplotlib==1.4.3
 numpy==1.10.1
 scipy==0.14.0
 scikit-learn==0.16.1
