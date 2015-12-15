@@ -21,7 +21,7 @@ from fabric.decorators import runs_once
 
 env.update(
     stage=None,
-    sudo_user='ubuntu',
+    sudo_user='root',
     use_ssh_config=False,
 )
 
@@ -43,7 +43,7 @@ class Stage(namedtuple('Stage', 'name hosts has_celery_worker')):
 STAGES = {
     stage.name: stage
     for stage in [
-        Stage('hunter-online', hosts=['115.159.159.12', ], has_celery_worker=False),
+        Stage('hunter-online', hosts=['115.159.161.183'], has_celery_worker=False),
         # Stage('hunter-dev', hosts=['zerus', ], has_celery_worker=False),
         # Stage('hunter-staging', hosts=['zerus', ], has_celery_worker=False),
     ]
@@ -109,16 +109,20 @@ def stage(name):
 
 @task
 def init_deploy(repo_url):
+    # > ssh-keygen
+
     if not env.stage:
         raise Exception('no stage given.')
 
+    sudo('rm -rf %s' % env.stage.project_root)
     sudo('mkdir -p %s' % env.stage.project_root)
+    sudo('chown -R mongoo:mongoo %s' % env.stage.project_root)
 
     with cd(env.stage.project_root), lock():
-        sudo('git init .')
-        sudo('git remote add origin %s' % repo_url)
-        sudo('git pull --quiet -u origin master')
-        sudo('make venv npm')
+        run('git init .')
+        run('git remote add origin %s' % repo_url)
+        run('git pull --quiet -u origin master')
+        run('make venv deps')
 
 
 @task
@@ -132,19 +136,12 @@ def deploy(revision='origin/master', repo='origin', restart_server='true'):
         raise Exception('no stage given.')
 
     with cd(env.stage.project_root), lock():
-        old_revision = run("git rev-parse HEAD")
+        old_revision = run('git rev-parse HEAD')
         update_source(revision, repo)
-        new_revision = run("git rev-parse HEAD")
+        new_revision = run('git rev-parse HEAD')
         update_deps()
         # copy_local_settings()
 
         # if strtobool(restart_server):
         #     execute(restart)
     # execute(notify_bearychat, old_revision, new_revision)
-
-
-@task
-def test():
-    with cd('/home'):
-        sudo("du -sh")
-
