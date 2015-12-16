@@ -8,7 +8,7 @@ Fabric==1.10.0
 xlrd==0.9.3
 Pillow==2.6.1
 ipdb==0.8
-requests[security]==2.8.1
+requests==2.8.1
 # analysis
 matplotlib==1.4.3
 numpy==1.6.2
