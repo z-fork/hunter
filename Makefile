@@ -3,7 +3,7 @@ VENV = venv
 PYTHON = $(VENV)/bin/python
 PIP = $(VENV)/bin/pip
 
-PIP_MIRROR = https://pypi.tuna.tsinghua.edu.cn/simple
+PIP_MIRROR = http://pypi.mirrors.ustc.edu.cn/simple
 
 PIP_INSTALL = $(PIP) install
 
