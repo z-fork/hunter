@@ -10,6 +10,7 @@ PIP_INSTALL = $(PIP) install
 
 deps:
 	@$(PIP_INSTALL) -i $(PIP_MIRROR) -r requirements.txt
+	@$(PIP_INSTALL) -i $(PIP_MIRROR) -r requirements-after.txt
 
 venv:
 	@virtualenv $(VENV) --prompt '<venv:hunter>'
