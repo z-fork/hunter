@@ -123,6 +123,7 @@ def init_deploy(repo_url):
         run('git remote add origin %s' % repo_url)
         run('git pull --quiet -u origin master')
         run('make venv deps')
+        run('make deps-after')
 
 
 @task
