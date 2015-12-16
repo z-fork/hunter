@@ -43,7 +43,7 @@ class Stage(namedtuple('Stage', 'name hosts has_celery_worker')):
 STAGES = {
     stage.name: stage
     for stage in [
-        Stage('hunter-online', hosts=['115.159.161.183'], has_celery_worker=False),
+        Stage('hunter-online', hosts=['115.159.159.12'], has_celery_worker=False),
         # Stage('hunter-dev', hosts=['zerus', ], has_celery_worker=False),
         # Stage('hunter-staging', hosts=['zerus', ], has_celery_worker=False),
     ]
