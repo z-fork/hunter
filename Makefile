@@ -3,15 +3,15 @@ VENV = venv
 PYTHON = $(VENV)/bin/python
 PIP = $(VENV)/bin/pip
 
-PIP_MIRROR = https://mirrors.aliyun.com/pypi/simple/
+PIP_MIRROR = http://mirrors.aliyun.com/pypi/simple/
 
 PIP_INSTALL = $(PIP) install
 
 deps-after:
-	@$(PIP_INSTALL) -i $(PIP_MIRROR) -r requirements-after.txt
+	@$(PIP_INSTALL) -i $(PIP_MIRROR) --trusted-host mirrors.aliyun.com -r requirements-after.txt
 
 deps:
-	@$(PIP_INSTALL) -i $(PIP_MIRROR) -r requirements.txt
+	@$(PIP_INSTALL) -i $(PIP_MIRROR) --trusted-host mirrors.aliyun.com -r requirements.txt
 
 venv:
 	@virtualenv $(VENV) --prompt '<venv:hunter>'
