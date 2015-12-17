@@ -13,3 +13,6 @@ deps:
 venv:
 	@virtualenv $(VENV) --prompt '<venv:hunter>'
 	@$(PIP_INSTALL) -i $(PIP_MIRROR) -U pip setuptools
+
+clean_pyc:
+	@find . -not \( -path './venv' -prune \) -name '*.pyc' -exec rm -f {} \;
