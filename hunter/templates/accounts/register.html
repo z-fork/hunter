@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Registration</h1>
+
+    <div class="auth_form">
+        <form role="form" method="POST">
+          {% include "accounts/partials/register_form.html" %}
+          <button type="submit" class="btn btn-success">Register</button>
+        </form>
+    </div>
+{% endblock content %}
+

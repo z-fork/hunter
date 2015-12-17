@@ -1,4 +1,9 @@
 tornado==4.3
+motor==0.1.2
+Jinja2==2.7.1
+-e git://github.com/st4lk/schematics.git@nested_compound#egg=schematics-dev
+WTForms==1.0.5
+wtforms-tornado==0.0.1
 futures==3.0.3
 MySQL-python==1.2.5
 redis==2.10.3
@@ -11,10 +16,11 @@ ipdb==0.8
 requests==2.8.1
 # analysis
 matplotlib==1.4.3
+six==1.9.0
 numpy==1.6.2
 scipy==0.14.0
-six==1.9.0
 pandas==0.15.0
 patsy==0.4.1
+scikit-learn==0.16.1
 # nlp
 gensim
