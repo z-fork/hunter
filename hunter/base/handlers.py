@@ -1,13 +1,30 @@
-import logging
+# -*- coding: utf-8 -*-
+
 import json
-from bson.objectid import ObjectId
+import time
+import logging
+
 import tornado.web
 from tornado import gen
+from bson.objectid import ObjectId
 from pymongo.errors import DuplicateKeyError
-from settings import JINJA_ENV
-from .decorators import check_skip_permissions
+
+from hunter.settings import JINJA_ENV
+from hunter.base.decorators import check_skip_permissions
+
 
 logger = logging.getLogger(__name__)
+
+
+class TimeHandler(tornado.web.RequestHandler):
+
+    def data_received(self, chunk):
+        pass
+
+    @tornado.gen.coroutine
+    def get(self):
+        self.write(time.time())
+        self.finish()
 
 
 class BaseHandler(tornado.web.RequestHandler):
@@ -54,7 +71,7 @@ class BaseHandler(tornado.web.RequestHandler):
 
     @gen.coroutine
     def get_current_user_object(self):
-        from accounts.models import UserModel
+        from hunter.accounts.models import UserModel
         email = self.current_user
         if email:
             # TODO cache
