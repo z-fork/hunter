@@ -1,2 +1,0 @@
-# analysis
-scikit-learn==0.16.1
