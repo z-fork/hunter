@@ -1,7 +1,6 @@
 tornado==4.3
 motor==0.1.2
 Jinja2==2.7.1
--e git://github.com/st4lk/schematics.git@nested_compound#egg=schematics-dev
 WTForms==1.0.5
 wtforms-tornado==0.0.1
 futures==3.0.3
