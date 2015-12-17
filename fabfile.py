@@ -69,8 +69,8 @@ def lock():
 
 
 def update_source(revision, repo):
-    sudo('git fetch --quiet %s' % repo)
-    sudo('git checkout --quiet %s' % revision)
+    run('git fetch --quiet %s' % repo)
+    run('git checkout --quiet %s' % revision)
 
 
 def copy_local_settings():
@@ -80,8 +80,8 @@ def copy_local_settings():
 
 
 def update_deps():
-    sudo('make deps')
-    sudo('make clean_pyc')
+    run('make deps')
+    run('make clean_pyc')
 
 
 @task
