@@ -5,12 +5,16 @@ from tornado.web import url
 # from news.handlers import NewsListHandler, NewsCreateHandler,\
 #     NewsDetailHandler, NewsDeleteHandler
 
-from hunter.wechat.verify import VerifyHandler
+from hunter.base.handlers import TimeHandler
+from hunter.wechat.handlers import VerifyHandler
 
 
 url_patterns = [
-    # verify
-    url(r'/verify', VerifyHandler, name='verify')
+    # echo
+    url(r'/time', TimeHandler),
+
+    # wechat verify
+    url(r'/verify', VerifyHandler, name='verify'),
 
     # pages
     # url(r"/", HomeHandler, name="home"),

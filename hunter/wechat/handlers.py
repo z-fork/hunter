@@ -10,7 +10,7 @@ import tornado.concurrent
 from hunter.settings import TOKEN
 
 
-l = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
 class VerifyHandler(tornado.web.RequestHandler):
