@@ -23,7 +23,7 @@ class TimeHandler(tornado.web.RequestHandler):
 
     @tornado.gen.coroutine
     def get(self):
-        self.write(time.time())
+        self.write(str(time.time()))
         self.finish()
 
 
