@@ -2,7 +2,7 @@
 import logging
 from tornado import gen
 from tornado import web
-from base.handlers import ListHandler, CreateHandler, DetailHandler,\
+from hunter.base.handlers import ListHandler, CreateHandler, DetailHandler,\
     DeleteHandler
 from .models import NewsModel
 from .forms import NewsForm

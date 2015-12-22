@@ -7,7 +7,7 @@ from tornado.web import url
 
 from hunter.base.handlers import TimeHandler
 from hunter.wechat.handlers import VerifyHandler
-
+from hunter.christmas.handlers import ChristmasGiftHandler
 
 url_patterns = [
     # echo
@@ -15,6 +15,9 @@ url_patterns = [
 
     # wechat verify
     url(r'/verify', VerifyHandler, name='verify'),
+
+    # christmas
+    url(r'/christmas', ChristmasGiftHandler, name='christmas_gift')
 
     # pages
     # url(r"/", HomeHandler, name="home"),

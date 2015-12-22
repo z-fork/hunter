@@ -93,10 +93,11 @@ def restart():
     if not env.stage:
         raise Exception('no stage given.')
 
-    name = env.stage.name
-    if env.stage.has_celery_worker:
-        sudo('sudo /etc/init.d/celery-%s term' % name)  # Celery 只接收 TERM 信号
-    sudo('sudo /etc/init.d/%s hup' % name)
+    # name = env.stage.name
+    # if env.stage.has_celery_worker:
+    #     sudo('sudo /etc/init.d/celery-%s term' % name)  # Celery 只接收 TERM 信号
+    # sudo('sudo /etc/init.d/%s hup' % name)
+    run('/etc/init.d/hunter-supervisord restart')
 
 
 @task
@@ -143,6 +144,6 @@ def deploy(revision='origin/master', repo='origin', restart_server='true'):
         update_deps()
         # copy_local_settings()
 
-        # if strtobool(restart_server):
-        #     execute(restart)
+        if strtobool(restart_server):
+            execute(restart)
     # execute(notify_bearychat, old_revision, new_revision)

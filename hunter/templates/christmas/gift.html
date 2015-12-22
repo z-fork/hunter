@@ -1,0 +1,18 @@
+{% extends "christmas/base/base.html" %}
+
+{% block title %}你受骗指数有多高？{% endblock title %}
+
+{% block content %}
+<div class="page1">
+  <div class="title">
+    你受骗指数有多高？<p>你知道自己有多好骗嘛？</p>
+  </div>
+  <img src="{{static_url('img/apps/christmas/cover.jpg')}}" class="funny-img">
+  <center>
+    <form role="form" method="post">
+      {% include "christmas/partials/name.html" %}
+      <input type="submit" class="btn-start" value="开始测试">
+    </form>
+  </center>
+</div>
+{% endblock content %}
