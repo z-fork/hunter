@@ -1,0 +1,36 @@
+{% extends "christmas/base/base.html" %}
+
+{% block title %}
+  {{ obj.name }} 受骗指数是：{{ obj.comment }}
+{% endblock title %}
+
+{% block content %}
+<div class="share" id="share" onclick="document.getElementById('share').style.display='block'">
+  <img width="85%" src="{{static_url('img/utils/wechat_share.png')}}">
+</div>
+<div class="page2">
+  <section class="section">
+    <div class="word-wrap">
+      <font color="#EE7600">{{ obj.name }}</font>受骗指数是：<font color="#EE7600">{{ obj.comment }}</font>
+    </div>
+  </section>
+<img src="{{static_url('img/apps/christmas/' + obj.comment_img)}}" class="funny-img">
+<br>
+  <input style="width: 45%;float: left;margin-left: 3%;" type="button" class="btn-share" value="分享出去" onclick="document.getElementById('share').style.display='inline'">
+  <input style="width: 45%;margin-left: 3%;" type="button" class="btn-start-r" value="学她:A杯变D!" onclick="window.location.href='http://bplan8.lvshou.com/fx/?f=quiz_more'">
+</div>
+
+<script>
+$(function(){
+  $('#share').click(function(){
+    $('#share').hide();
+  });
+});
+</script>
+{% endblock content %}
+
+{% block advert %}
+<a style='color:#ff9900;' href='../xiyouji/'>☞ <u>你是西游记里的谁？</u></a><br />
+<a style='color:#ff9900;' href='../qianshizhiye/'>☞ <u>测测你前世的职业</u></a><br />
+<a style='color:#ff9900;' href='../ruodian/'>☞ <u>测测你最大的弱点是什么？</u></a><br />
+{% endblock advert %}

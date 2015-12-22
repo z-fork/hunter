@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
-from base.forms import ModelForm, Form
+from hunter.base.forms import ModelForm, Form
 from wtforms import StringField, PasswordField, validators
 from wtforms.validators import ValidationError
 from .models import UserModel

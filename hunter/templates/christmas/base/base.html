@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}Default Title{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="{{static_url('css/apps/christmas/gift.css')}}" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="{{static_url('js/libs/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{static_url('js/apps/christmas/zm.js')}}"></script>
+  </head>
+  <body>
+    <div style="text-align:center;">
+    </div>
+    {% block content %}
+    {% endblock content %}
+    <div style="text-align: center;margin: 0 auto;width:100%;line-height:34px;font-size:1.2em;">
+      {% block advert %}
+      {% endblock advert %}
+    </div>
+    <div style="display:none; margin-bottom:120px;">
+    </div>
+    <div style="margin-bottom:70px;">
+    </div>
+  </body>
+</html>

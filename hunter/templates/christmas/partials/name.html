@@ -1,0 +1,12 @@
+{{ xsrf_form_html() | safe }}
+
+{% include "partials/forms/non_field_errors.html" %}
+
+{% with field = form.name, placeholder = "请输入你的名字" %}
+<div class="form-group{% if field.errors %} has-error{% endif %}">
+  {{ field(class="input-name", id="grow_name", placeholder=placeholder) }}
+  {% for err in field.errors %}
+    <p class="help-block"><strong>{{ err }}</strong></p>
+  {% endfor %}
+</div>
+{% endwith %}

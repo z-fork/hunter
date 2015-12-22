@@ -28,12 +28,13 @@ class TimeHandler(tornado.web.RequestHandler):
 
 
 class BaseHandler(tornado.web.RequestHandler):
-    """A class to collect common handler methods - all other handlers should
-    subclass this one.
-    """
-    def initialize(self, **kwargs):
-        super(BaseHandler, self).initialize(**kwargs)
-        self.db = self.settings['db']
+
+    def data_received(self, chunk):
+        pass
+
+    def initialize(self):
+        super(BaseHandler, self).initialize()
+        # self.db = self.settings['db']
         self.current_user_object = None
         self.template_name = None
 
@@ -43,8 +44,8 @@ class BaseHandler(tornado.web.RequestHandler):
             context = {}
         context.update(self.get_template_namespace())
         self.write(JINJA_ENV.get_template(template).render(context))
+        # TODO _xsrf and flush 干嘛的
         # Always set _xsrf cookie
-        self.xsrf_token
         self.flush()
 
     def set_current_user(self, user):
@@ -55,8 +56,7 @@ class BaseHandler(tornado.web.RequestHandler):
 
     @property
     def is_ajax(self):
-        request_x = self.request.headers.get('X-Requested-With')
-        return request_x == 'XMLHttpRequest'
+        return 'XMLHttpRequest' == self.request.headers.get('X-Requested-With')
 
     def render_json(self, data):
         self.set_header("Content-Type", "application/json")
@@ -87,8 +87,8 @@ class BaseHandler(tornado.web.RequestHandler):
 
 class PermissionBaseHandler(BaseHandler):
 
-    def initialize(self, **kwargs):
-        super(PermissionBaseHandler, self).initialize(**kwargs)
+    def initialize(self):
+        super(PermissionBaseHandler, self).initialize()
         self.skip_permissions = True
         self.user_permissions = []
 
@@ -185,9 +185,9 @@ class ListHandler(PermissionBaseHandler):
         raise gen.Return(object_list)
 
 
-class CreateHandler(PermissionBaseHandler):
+class PermissionCreateHandler(PermissionBaseHandler):
     def initialize(self, **kwargs):
-        super(CreateHandler, self).initialize(**kwargs)
+        super(PermissionCreateHandler, self).initialize(**kwargs)
         self.skip_permissions = False
         self.needed_permissions = set(['write'])
         self.model = None
