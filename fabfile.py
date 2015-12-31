@@ -70,7 +70,7 @@ def lock():
 
 def update_source(revision, repo):
     run('git fetch --quiet %s' % repo)
-    run('git checkout --quiet %s' % revision)
+    run('git checkout --force --quiet %s' % revision)
 
 
 def copy_local_settings():
